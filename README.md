@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# undiegravity p 7
 
-## Getting Started
+Theme and template provided by undiegravity
 
-First, run the development server:
+## Project Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* Dynamic surgical implantology medical landing page template
+* Interactive consultation booking and case evaluation modal
+* Three dimensional navigational surgical guide interactive viewer with anatomical hotspots
+* Real time three step immediate loading suitability calculator
+* Horizontal scrollable clinical condition intervention cards with expandable diagnostics
+* Full dentition restoration diagnostic criteria indicators
+* Global theme variable design system with warm ivory canvas palette
+* Fully responsive layout with mobile drawer and desktop navigation
+* TypeScript schemas and architecture ready for backend API integration
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack and Versions
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* Next.js 16.4.3
+* React 19.3.0
+* React DOM 19.3.0
+* Tailwind CSS 4.0
+* Lucide React 1.16.0
+* TypeScript 5.0
+* ESLint 9.0
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Backend API Endpoint List
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* GET /api/v1/clinic/profile: Retrieve doctor profile, surgery statistics, and certifications
+* GET /api/v1/treatments/conditions: List daily clinical condition treatments and surgical metrics
+* GET /api/v1/solutions/navigation: Fetch three dimensional implant navigation model specs and hotspots
+* GET /api/v1/diagnostics/indications: Fetch arch restoration diagnosis indications and criteria
+* POST /api/v1/evaluation/candidate: Submit candidate assessment responses and receive suitability scoring
+* POST /api/v1/consultations/book: Submit surgical consultation requests and appointment preferences
+* GET /api/v1/clinic/contact: Fetch current operating hours, direct phone line, and practice disclosures

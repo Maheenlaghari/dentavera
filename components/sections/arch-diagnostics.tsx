@@ -46,7 +46,7 @@ export function ArchDiagnostics({ content }: ArchDiagnosticsProps) {
             </div>
             <ConsultationButton className="btn btn-secondary shrink-0 self-start sm:self-auto">
               {content.actionLabel}
-              <ArrowRight aria-hidden="true" className="size-4" />
+              <ArrowRight aria-hidden="true" className="btn-arrow" />
             </ConsultationButton>
           </div>
         </div>

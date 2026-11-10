@@ -41,7 +41,7 @@ export function Hero({ doctor, contact }: HeroProps) {
           <div className="mb-8 flex animate-fade-in-up flex-wrap items-center gap-3 anim-delay-4">
             <ConsultationButton className="btn btn-primary py-3.5">
               {doctor.primaryActionLabel}
-              <ArrowRight aria-hidden="true" className="size-4" />
+              <ArrowRight aria-hidden="true" className="btn-arrow" />
             </ConsultationButton>
             <a href={`tel:${contact.phoneRaw}`} className="btn btn-secondary py-3.5">
               <Phone aria-hidden="true" className="size-4 text-olive" />

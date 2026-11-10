@@ -1,81 +1,35 @@
-"use client";
+import { ConsultationProvider } from "@/components/consultation/consultation-provider";
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
+import { ArchDiagnostics } from "@/components/sections/arch-diagnostics";
+import { CandidateQuiz } from "@/components/sections/candidate-quiz";
+import { ClinicalConditions } from "@/components/sections/clinical-conditions";
+import { Hero } from "@/components/sections/hero";
+import { ImplantSolutions } from "@/components/sections/implant-solutions";
+import { Reviews } from "@/components/sections/reviews";
+import { ValueAssurances } from "@/components/sections/value-assurances";
+import { getReviews, getSiteContent } from "@/services/content-service";
 
-import { useState } from "react";
-import { clinicData } from "@/data/clinic-data";
-import { Header } from "@/components/header";
-import { Hero } from "@/components/hero";
-import { ClinicalConditions } from "@/components/clinical-conditions";
-import { ImplantSolutions } from "@/components/implant-solutions";
-import { ArchDiagnostics } from "@/components/arch-diagnostics";
-import { CandidateQuiz } from "@/components/candidate-quiz";
-import { ValueAssurances } from "@/components/value-assurances";
-import { Footer } from "@/components/footer";
-import { ConsultationModal } from "@/components/consultation-modal";
-
-export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+export default async function HomePage() {
+  const [content, reviews] = await Promise.all([getSiteContent(), getReviews()]);
 
   return (
-    <div className="min-h-screen bg-[#f5f3ed] text-[#1a1c19] flex flex-col selection:bg-[#c8d7c4]">
-      <Header
-        navItems={clinicData.navItems}
-        phoneDisplay={clinicData.doctor.phoneDisplay}
-        phoneRaw={clinicData.doctor.phoneRaw}
-        onBookClick={handleOpenModal}
-      />
+    <ConsultationProvider content={content.consultation} contact={content.contact}>
+      <div className="flex min-h-screen flex-col">
+        <Header brand={content.brand} contact={content.contact} content={content.header} />
 
-      <main className="flex-1">
-        <Hero
-          doctor={clinicData.doctor}
-          onRequestConsultation={handleOpenModal}
-        />
+        <main className="flex-1">
+          <Hero doctor={content.doctor} contact={content.contact} />
+          <ClinicalConditions content={content.clinicalConditions} />
+          <ImplantSolutions content={content.implantSolutions} />
+          <ArchDiagnostics content={content.archDiagnostics} />
+          <CandidateQuiz content={content.candidateQuiz} />
+          <Reviews content={content.reviews} reviews={reviews} />
+          <ValueAssurances items={content.valueAssurances} />
+        </main>
 
-        <ClinicalConditions
-          conditions={clinicData.clinicalConditions}
-        />
-
-        <ImplantSolutions
-          modelSpec={clinicData.navigationModel}
-          solutions={clinicData.implantSolutions}
-        />
-
-        <ArchDiagnostics
-          badge={clinicData.archDiagnostics.badge}
-          title={clinicData.archDiagnostics.title}
-          subtitle={clinicData.archDiagnostics.subtitle}
-          items={clinicData.archDiagnostics.items}
-          guaranteeTitle={clinicData.archDiagnostics.guaranteeTitle}
-          guaranteeDescription={clinicData.archDiagnostics.guaranteeDescription}
-          onCalculateCost={handleOpenModal}
-        />
-
-        <CandidateQuiz
-          badge={clinicData.candidateQuiz.badge}
-          title={clinicData.candidateQuiz.title}
-          subtitle={clinicData.candidateQuiz.subtitle}
-          questions={clinicData.candidateQuiz.questions}
-          privacyNotice={clinicData.candidateQuiz.privacyNotice}
-        />
-
-        <ValueAssurances items={clinicData.valueAssurances} />
-      </main>
-
-      <Footer data={clinicData} />
-
-      <ConsultationModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        phoneDisplay={clinicData.doctor.phoneDisplay}
-        phoneRaw={clinicData.doctor.phoneRaw}
-      />
-    </div>
+        <Footer brand={content.brand} contact={content.contact} content={content.footer} />
+      </div>
+    </ConsultationProvider>
   );
 }
